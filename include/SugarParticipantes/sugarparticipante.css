@@ -1,0 +1,73 @@
+/* 
+    Document   : sugarprogramas
+    Created on : 26/04/2012, 08:25:18 PM
+    Author     : B.O.S
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+ .datos
+{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12px;
+        background: white;
+        color:black;
+        cursor:text;
+
+        border-bottom: 1px solid #104A7B;
+        border-right: 1px solid #104A7B;
+        border-left: 1px solid #104A7B;
+        border-top:1px solid #104A7B;
+        width: 60px;
+
+
+}
+
+ .numeric
+{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12px;
+        background: white;
+        color:black;
+        cursor:text;
+
+        border-bottom: 1px solid #104A7B;
+        border-right: 1px solid #104A7B;
+        border-left: 1px solid #104A7B;
+        border-top:1px solid #104A7B;
+        width: 60px;
+
+}
+
+
+
+
+.seccion_comentarios{
+	border: 1px solid black;
+	padding: 5px;
+	margin:5px;
+	width:45%;
+	float:left;
+}
+
+.seccion_headcomentarios{
+	font-weight: bold;
+	padding:2px;
+	text-align: center;
+	background-image: url("./custom/include/images/bg_top.jpg");
+        
+	color:#CCC;
+}
+
+.seccion_comentarios label{
+	width:200px !important;
+}
+.seccion_comentarios input select{
+
+    width: 150px !important;
+}

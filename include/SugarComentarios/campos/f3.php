@@ -1,0 +1,57 @@
+<?php
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$campos= array(
+    'f3'=>array(
+        'nombreParticipante'=>array('type'=>'text'),
+        'empresaTrabaja'=>array('type'=>'date'),
+        'cargoDesempena'=>array('type'=>'text'),
+        'email'=>array('type'=>'text'),
+        'dedicaEmpresa'=>array('type'=>'text'),
+        'contenidoCalificacion'=>array('type'=>'text'),
+        'contenidoComentario'=>array('type'=>'text'),
+        'aplicacionCalificacion'=>array('type'=>'text'),
+        'aplicacionComentario'=>array('type'=>'text'),
+        'metodologiaCalificacion'=>array('type'=>'text'),
+        'metodologiaComentario'=>array('type'=>'text'),
+        'materialesCalificacion'=>array('type'=>'text'),
+        'materialesComentario'=>array('type'=>'text'),
+        'organizacionCalificacion'=>array('type'=>'text'),
+        'organizacionComentario'=>array('type'=>'text'),
+        'aeiCalificacion'=>array('type'=>'text'),
+        'aeiComentario'=>array('type'=>'text'),
+        'duracionCalificacion'=>array('type'=>'text'),
+        'duracionComentario'=>array('type'=>'text'),
+        'puntualidadCalificacion'=>array('type'=>'text'),
+        'puntualidadComentario'=>array('type'=>'text'),
+        'evaluacionCalificacion'=>array('type'=>'text'),
+        'evaluacionComentario'=>array('type'=>'text'),
+        'actitudCalificacion'=>array('type'=>'text'),
+        'actitudComentario'=>array('type'=>'text'),
+        'conocimientoCalificacion'=>array('type'=>'text'),
+        'conocimientoComentario'=>array('type'=>'text'),
+        'equilibrioCalificacion'=>array('type'=>'text'),
+        'equilibrioComentario'=>array('type'=>'text'),
+         'claridadCalificacion'=>array('type'=>'text'),
+         'claridadComentario'=>array('type'=>'text'),
+         'respuestasCalificacion'=>array('type'=>'text'),
+         'respuestasComentario'=>array('type'=>'text'),
+         'tiempoCalificacion'=>array('type'=>'text'),
+         'tiempoComentario'=>array('type'=>'text'),
+         'didacticoCalificacion'=>array('type'=>'text'),
+         'didacticoComentario'=>array('type'=>'text'),        
+   ),
+  'f2'=>array(
+        'fecha'=>array('type'=>'text'),
+        'grupo'=>array('type'=>'date'),
+        'participacion'=>array('type'=>'text'),
+        'interes'=>array('type'=>'text'),
+        'rendimiento'=>array('type'=>'text'),
+        'actitud'=>array('type'=>'text'),
+        'comentarios'=>array('type'=>'text'),
+       
+    ),
+);
+?>

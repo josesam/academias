@@ -1,0 +1,74 @@
+/* 
+    Document   : subpannel
+    Created on : 18/06/2012, 04:43:34 AM
+    Author     : B.O.S
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#menuh {
+        
+        margin-top: 20px;
+        margin-bottom:  20px;
+        display: block;
+        clear: both!important;
+        float: none;
+        
+}
+
+#subpanel_list{
+    
+     clear: both!important;
+}
+
+#menuh ul, li {
+        list-style-type: none!important;
+}
+
+#menuh ul {
+        margin: 0;
+        padding: 0;
+}
+
+#menuh li {
+        float: left;
+}
+
+#menuh a {
+        text-decoration: none;
+        color: #3366CC;
+        background: #F0F7FC;
+        display: block;
+        padding: 3px 10px;
+        text-align: center;
+        border: 1px solid #ACCFE8;
+        border-width: 1px 1px 1px 0;
+}
+
+
+#menuh a#primero {
+        border-left: 1px solid #ACCFE8;
+}
+
+#menuh .selected {
+        border-left: 1px solid #ACCFE8;
+        color: #fff;
+        background-color: #3366CC;
+}
+#menuh .unselected {
+        border-left: 1px solid #ACCFE8;
+        color: #3366CC;
+        background-color: #F0F7FC;
+}
+
+#menuh a:hover {
+        
+         border-left: 1px solid #ACCFE8;
+        color: #fff;
+        background-color: #3366CC;
+}

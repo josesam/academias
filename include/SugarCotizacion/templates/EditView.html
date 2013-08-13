@@ -1,0 +1,173 @@
+{*
+/*********************************************************************************
+ * SugarCRM is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004 - 2009 SugarCRM Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo. If the display of the logo is not reasonably feasible for
+ * technical reasons, the Appropriate Legal Notices must display the words
+ * "Powered by SugarCRM".
+ ********************************************************************************/
+*}
+<link rel="stylesheet" type="text/css" href="include/SugarCotizacion/sugarcotizacion.css" />
+
+<div id="programa" style="display:none;">
+<div class="seccion" >
+    <div class="seccion_head">
+            Datos Búsqueda
+    </div>
+
+<label>Programa</label>
+<input type="text"  name="programa_pop" id="programa_pop" value="" size="45">
+<br>
+<div id="manual_programa" style="display:none;">
+<label>Nombre Programa</label>
+<input type="text"   name="programamanual_pop" id="programamanual_pop" value="" size="45">
+<br>
+<label>Horas</label>
+<input type="text" class="numeric" name="horasmanual_pop" id="horasmanual_pop" value="" size="45">
+<br>
+<br>
+<label>Monto</label>
+<input type="text" class="numeric"  name="monto_pop" id="monto_pop" value="" size="45">
+</div>
+<br>
+<label>Fuente</label>
+<select id="fuente_programa" name="fuente_programa">
+    <option value="database">Buscar Programas existentes</option>
+    <option value="manual">Ingresar Manualmente</option>
+</select>
+<br>
+
+<input type="button" name="anadirpop" id="anadirpop" value="Buscar" onclick="javascript:buscar_programas();"></button>
+</div>
+<hr>
+<div id="busqueda_programas"></div>
+
+      </div>
+          <br>
+
+<script type="text/javascript">
+	var module = '{$module}';
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" >
+    <thead>
+        <tr>
+            <th width="10%"><a href="javascript:void(0);" onclick="javascript:abrir(); return false;">{if $convertida==0}Escoger Programa{/if}</a></th>
+            <th width="18%"><input type="hidden" name="convertida_interface"  value="{$convertida}" id="convertida_interface"></th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            
+        </tr>
+    </thead>
+	<tr>
+		<td class="dataField" valign="top" NOWRAP colspan="6">
+			<table cellpadding="0" cellspacing="0" border="0" id="{$module}AmbienteTable">
+
+
+                                <thead>
+                                <tr>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Programa</th><!-- Proceso /tipo -->
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Número Horas</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Coordinador</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Total</th>
+                                     
+                                     
+					<th class="dataLabel" NOWRAP>
+      					   Borrar
+					</th>
+                                        
+                                        <th class="dataLabel" NOWRAP style="text-align:center;">
+                                            
+					</th>
+                                        <th class="dataLabel" NOWRAP>
+      					   
+					</th>
+
+				</tr>
+                                </thead>
+                                <tbody id="targetBodyAmbientes"></tbody>
+			</table>
+		</td>
+	</tr>
+        
+</table>
+<div id="detalle_programa">
+    
+</div>
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+ emailView = '{$emailView}';
+	prefillAmbientes = '{$prefillAmbientes}';
+
+	//admin={$admin};
+
+	{literal}
+	if(prefillAmbientes == 'true') {
+	 cargarMaterial({/literal}{literal}'{/literal}{$module}AmbienteTable{literal}'{/literal}, {$prefillData});{literal}
+	} else if(prefillAmbientes == 'false') {
+	{/literal}
+	 addMaterial({literal}'{/literal}{$module}AmbienteTable{literal}'{/literal}, '');
+	}
+
+</script>
+
+
+
+<script type="text/javascript">
+{literal}
+Calendar.setup ({
+	inputField : "fechaincio_pop",
+        daFormat : '%d/%m/%Y',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechaincio_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+Calendar.setup ({
+	inputField : "fechafinal_pop",
+        daFormat : '%d/%m/%Y',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechafinal_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+{/literal}
+</script>

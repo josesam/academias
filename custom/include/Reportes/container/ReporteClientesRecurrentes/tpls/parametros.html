@@ -1,0 +1,285 @@
+<script type="text/javascript"  src="custom/include/scripts/genericas/varios/jquery.js"></script>
+<script type="text/javascript"  src="custom/include/scripts/genericas/jquery/js/jquery-ui.min.js"></script>
+<script type='text/javascript' src='custom/include/Reportes/scripts/jquery.dataTables.js'></script>
+<script type='text/javascript' src='custom/include/Reportes/scripts/sp_reportes.js'></script>
+<script type='text/javascript' src='custom/include/Reportes/container/{$reporte}/scripts/script.js'></script>
+<script type='text/javascript' src='custom/include/Reportes/openflash/js/swfobject.js'></script>
+<script type='text/javascript' src='custom/include/Reportes/openflash/js/json/json2.js'></script>
+<script type='text/javascript' src='include/javascript/sugar_grp_overlib.js'></script>
+<script type="text/javascript" charset="utf-8" src="custom/include/Reportes/scripts/tabletools/media/js/ZeroClipboard.js"></script>
+<script type='text/javascript' src='custom/include/Reportes/scripts/tabletools/media/js/TableTools.js'></script>
+<link rel='stylesheet' href='custom/include/Reportes/scripts/tabletools/media/css/TableTools.css' type='text/css' />
+<link rel="stylesheet" type="text/css" href="custom/include/scripts/genericas/jquery/css/jquery-ui.css" />
+<link rel='stylesheet' href='custom/include/Reportes/css/sp_reportes_css.css' type='text/css' />
+<link rel='stylesheet' href='custom/include/Reportes/css/demo_page.css' type='text/css' />
+<link rel='stylesheet' href='custom/include/Reportes/css/demo_table.css' type='text/css' />
+<link rel="stylesheet" type="text/css" href="custom/include/css/tablas/style.css" />
+
+
+<form name="SP_Reporte" id="SP_Reporte" method="POST" action="" >
+<input type="hidden" name="reportes" id="reportes" value="{$reportes}">
+<input type="hidden" name="module" id="module" value="{$module}">
+<input type="hidden" name="action" id="action" value="{$action}">
+
+<input type="hidden" name="nombre_reporte" id="nombre_reporte" value="{$reporte}">
+
+<table width="80%"  id="rounded-corner">
+<thead>
+<tr>
+<th colspan="2" class="rounded-company"><div id="titulo">{$title}</div></th>
+<th colspan="2" class="rounded-q4">
+    <div style="text-align: right;"><img src="custom/include/Reportes/images/information.png" onclick="javascript:mostrar_descripcion();"></img></div>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4"><div id="descripcion_reportes" style="display:none;"><p style="font-size:14px;">{$descripcion}</p></div></td>
+</tr>
+<tr>
+<td><div id="texto_filtros">Fecha Inicial (Fecha Cierre Oportunidad):<span style="color:#FF0000;">*</span></div></td>
+<td><input name='fecha_inicial' onblur="parseDate(this, '%Y-%m-%d');" id='jscal_field' type="text" tabindex='1' size='11' maxlength='10' value="{$fecha_inicial}"> <img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="jscal_trigger" align="absmiddle"> <span class="dateFormat">yyyy-mm-dd</span></slot></td></td>
+<td><div id="texto_filtros">Fecha Final (Fecha Cierre Oportunidad):<span style="color:#FF0000;">*</span></div></td>
+<td><input name='fecha_final' onblur="parseDate(this, '%Y-%m-%d');" id='jscal1_field' type="text" tabindex='1' size='11' maxlength='10' value="{$fecha_final}"> <img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="jscal1_trigger" align="absmiddle"> <span class="dateFormat">yyyy-mm-dd</span></slot></td>
+</tr>
+<tr>
+    <td><div id="texto_filtros">Programas</div></td>
+    <td>
+        <select name="programas[]" id="programas" multiple size="5">
+             {$selected_programas}
+        </select>
+</td>
+    <td><div id="texto_filtros">Ciudad</div></td>
+    <td>
+        <select name="ciudad[]" id="ciudad" multiple size="3">
+             {$selected_ciudad}
+        </select>
+    </td>
+</tr>
+<tr>
+    <td><div id="texto_filtros">Tipo Cliente</div></td>
+    <td>
+        <select name="tipo_cliente" id="tipo_cliente" multiple size="3">
+             {$selected_tipo_cliente}
+        </select>
+    </td>
+    <td><div id="texto_filtros">Provincia</div></td>
+    <td>
+        <select name="provincia[]" id="provincia" multiple size="3">
+             {$selected_provincia}
+        </select>
+    </td>
+</tr>
+
+
+<tr>
+<td colspan="4">
+<input type="submit" name="verreporte" id="verreporte" value="Ejecutar Reporte">
+<!--<input type="submit" name="descargar" id="descargar" value="Descargar">-->
+<!--<a href="javascript:void(0);" onclick="javascript:reporte();">Ver Reporte Gráfico</a>-->
+</td>
+</tr>
+
+
+</tbody>
+</table>
+</form>
+<script type="text/javascript">
+{literal}
+Calendar.setup ({
+	inputField : "jscal_field",
+        daFormat : '%Y-%m-%d',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "jscal_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+Calendar.setup ({
+	inputField : "jscal1_field",
+        daFormat : '%Y-%m-%d',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "jscal1_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+{/literal}
+</script>
+{if $show_data==true}
+<table width="100%"  class='display' id='example'>
+<thead>
+<tr>
+    <th class="header" style="width:100px;">Tipo Cliente</th>
+    <th class="header" style="width:100px;">Cliente</th>
+    <th class="header" style="width:100px;">Empresa<br>Trabajo</th>
+    <th class="header" style="width:100px;">Cargo</th>
+    <th class="header" style="width:100px;">Programa</th>
+    <th class="header" style="width:100px;">Fecha <br>de Inicio</th>
+    <th class="header" style="width:100px;">Fecha <br>Fin</th>
+    <th class="header" style="width:100px;">Precio Programa</th>
+    <th class="header" style="width:100px;">Descuento(%)</th>
+    <th class="header" style="width:100px;">Motivo<br>Descuento</th>
+    <th class="header" style="width:100px;">Dirección</th>
+    <th class="header" style="width:100px;">Provincia</th>
+    <th class="header" style="width:100px;">Ciudad</th>
+    <th class="header" style="width:100px;">Correo</th>
+    <th class="header" style="width:100px;">Teléfono</th>
+    <th class="header" style="width:100px;">Celular</th>    
+</tr>
+</thead>
+<tfoot>
+    <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    
+    
+
+    </tr>
+</tfoot>
+<tbody>
+    
+    {foreach key=key item=item from=$data}
+    <tr>
+        {foreach key=key item=item from=$item}
+         <td align="center">
+         {$item}
+         </td>
+        {/foreach}
+    </tr>
+{/foreach}
+</tbody>
+</table>
+{/if}
+
+
+
+
+<script type="text/javascript">
+swfobject.embedSWF("open-flash-chart.swf", "my_chart", "1000", "600", "9.0.0");
+</script>
+
+<script type="text/javascript">
+   {literal}
+function ofc_ready(){
+     
+}
+
+function open_flash_chart_data(){
+    
+    if(typeof(data)=="string"){
+        data=jQuery.parseJSON(data);
+
+        return data;
+}else{
+        return JSON.stringify(data);
+    }
+    
+}
+
+function findSWF(movieName) {
+    
+  if (navigator.appName.indexOf("Microsoft")!= -1) {
+    return window[movieName];
+  } else {
+    return document[movieName];
+  }
+}
+{/literal}
+    {literal}
+        var data = {/literal}{$chart->toPrettyString()};
+        
+        
+</script>
+
+
+<form id="grafico_form" action="">
+<div id="reporte_div" style="display: none;">
+    <table width="80%"  id="rounded-corner" border="0">
+        <thead>
+        <tr>
+        <th colspan="2" class="rounded-company"><div id="titulo">{$title}</div></th>
+        <th colspan="2" class="rounded-q4"></th>
+        </tr>
+        <tr>
+<td><div id="texto_filtros">
+Asesores/Concesionarios:</div>
+</td>
+<td>
+<select name="usuarios_grafico[]" id="usuarios_grafico" multiple SIZE=5>
+    {$selected_user}
+</select>
+<input type="checkbox" name="seleciona_u" id="selecciona_u" onclick="seleccionarTodo('usuarios_grafico',this);"/><div id="texto_filtros">Selecciona</div>
+</td>
+<td>
+<div id="texto_filtros">
+                Categoria
+</div>
+</td>
+<td>
+<select name="categoria_grafico[]" id="categoria_grafico" multiple size="4">
+            {$selected_categoria}
+ </select>
+        <input type="checkbox" name="seleciona_categoriag" id="seleciona_categoriag" onclick="seleccionarTodo('categoria_grafico',this);"/><div id="texto_filtros">Selecciona</div>
+
+</td>
+</tr>
+
+
+<tr>
+<td><div id="texto_filtros">
+Cédula:</div>
+</td>
+<td>
+   <input type="text" name="cedula_ruc_grafico"  id="cedula_ruc_grafico" value="{$cedula}">
+
+</td>
+<td>
+<div id="texto_filtros">
+Tipo de Servicios
+</div>
+</td>
+<td>
+    <select name="tiposervicio_grafico[]" id="tiposervicio_grafico" multiple SIZE="3">
+    {$selected_tiposervicio}
+</select>
+<input type="checkbox" name="selecionaE" id="seleccionaE" onclick="seleccionarTodo('tiposervicio_grafico',this);"/>Selecciona
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+    <td><a href="javascript:void(0);" onclick="javascript:generar_reporte();">Generar Reporte</a></td>
+</tr>
+
+</thead>
+<tbody>
+    
+</tbody>
+</table>
+
+<hr>
+
+<div id="mi_grafico">
+</div>
+
+<div id="my_chart">
+</div>
+
+</div>
+</form>

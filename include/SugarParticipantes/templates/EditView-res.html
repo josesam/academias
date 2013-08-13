@@ -1,0 +1,177 @@
+{*
+/*********************************************************************************
+ * SugarCRM is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004 - 2009 SugarCRM Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo. If the display of the logo is not reasonably feasible for
+ * technical reasons, the Appropriate Legal Notices must display the words
+ * "Powered by SugarCRM".
+ ********************************************************************************/
+*}
+<link rel="stylesheet" type="text/css" href="include/SugarParticipantes/sugarparticipante.css" />
+
+<div id="participante" style="display:none;">
+    <div class="seccion" style="width: 95% !important;" >
+        <div class="seccion_head">
+                Datos Búsqueda
+        </div>
+    <p style="text-align: justify;">Los participantes pueden ser ingresados de dos formas mencionadas a continuación:</p>
+    <ol style="text-align: justify;">
+        <li>Contactos:  La opción de contactos , son participantes registrados en la ficha de contactos relacionados a los clientes </li>
+        <li>Manualmente:  La opción manual ,son datos del participante que no se encuentra registrado en el CRM , estos registros ingresados
+                formarán parte del CRM bajo la ficha del cliente ,
+                una vez que la oportunidad haya sido cerrada</li>
+        <li>Todos los Participantes: Busca desde la base de participantes 
+            a todo aquellos que participantes registrados
+            <div style="color:red;"><strong>Nota:</strong>
+                Si el participante no tiene cedula ,
+                ir al modulo de contactos y completar los datos desde esa pantalla
+                La búsqueda solo mostrara los <b>10</b> primeros participantes ordenados por apellido,
+                si no aparece el participante deseado favor agregar un nombre en el campo participante
+                para afinar la búsqueda.
+            </div>
+            
+        </li>
+
+    </ol>
+    <p style="color:red;"><b>Nota:</b></p>
+    <p style="text-align: justify;">
+        El dato de la cédula es requerido antes de ganar la oportunidad ,
+        si la cédula no esta correctamente ingresada , no podra cerrar la oportunidad.
+        Si el mensaje explica que existe duplicidad del participante ingrese al participante
+        desde la opción de contactos explicada anteriormente.
+
+    </p>
+    <hr>
+
+    <label>Participante</label>
+    <input type="text"  name="participante_pop" id="participante_pop" value="" size="45">
+    <br>
+
+
+    <div id="contacto_manual" style="display:none;">
+
+        <label>Nombres</label>
+        <input type="text"  name="nombre_pop" id="nombre_pop" value="" size="45"><br>
+        <label>Apellidos</label>
+        <input type="text"  name="apellidos_pop" id="apellidos_pop" value="" size="45"><br>
+        <label>Cédula</label>
+        <input type="text"  name="cedula_pop" id="cedula_pop" value="" size="45" maxlength="10"><br>
+        <label>Dirección</label>
+        <input type="text"  name="direccion_pop" id="direccion_pop" value="" size="45"><br>
+        <label>Teléfono</label>
+        <input type="text"  name="telefono_pop" id="telefono_pop" value="593 0 000 0000" size="45"><br>
+        <label>Correo</label>
+        <input type="text"  name="correo_pop" id="correo_pop" value="" size="45"><br>
+    </div>
+    <br>
+    <label>Fuente</label>
+    <select name="opcion_participante" id="opcion_participante">
+        <option value="database">Contactos</option>
+        <option value="manual">Manual</option>
+        <option value="todos">Todos los participantes</option>
+    </select>
+    <br>
+    <input type="button" name="anadir" id="anadir" value="Buscar" onclick="javascript:buscar_participantes();"></button>
+    </div>
+<hr>
+    <div id="busqueda_participante"></div>
+</div>
+          <br>
+
+<script type="text/javascript">
+	var module = '{$module}';
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" >
+    <thead>
+        <tr>
+            <th width="10%"><a href="javascript:void(0);" onclick="javascript:abrirparticipante(); return false;">{if $convertida==0}Escoger Participantes{/if}</a></th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            
+        </tr>
+    </thead>
+	<tr>
+		<td class="dataField" valign="top" NOWRAP colspan="6">
+			<table cellpadding="0" cellspacing="0" border="0" id="{$module}AmbienteTableP">
+
+
+                                <thead>
+                                <tr>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Nombre</th><!-- Proceso /tipo -->
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Apellidos</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Cédula</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Dirección</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Telefono</th>                                                                          
+			                                 <th class="dataLabel" NOWRAP style="text-align:center;">Correo</th>                                                                         
+                                     <th class="dataLabel" NOWRAP>
+      					   Borrar
+					</th>
+                                        
+                                        <th class="dataLabel" NOWRAP style="text-align:center;">
+                                            
+					</th>
+                                        <th class="dataLabel" NOWRAP>
+      					   
+					</th>
+
+				</tr>
+                                </thead>
+                                <tbody id="targetBodyAmbientes"></tbody>
+			</table>
+		</td>
+	</tr>
+        
+</table>
+
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+        emailViewp = '{$emailView}';
+	prefillAmbientesp = '{$prefillAmbientes}';	
+	{literal}
+	if(prefillAmbientesp == 'true') {
+	 cargarParticipante({/literal}{literal}'{/literal}{$module}AmbienteTableP{literal}'{/literal}, {$prefillData});{literal}
+	} else if(prefillAmbientes == 'false') {
+	{/literal}
+	 addParticipante({literal}'{/literal}{$module}AmbienteTableP{literal}'{/literal}, '');
+	}
+
+</script>
+
+
+

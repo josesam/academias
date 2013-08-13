@@ -1,0 +1,22 @@
+
+Casos WebAr
+
+	La fecha del formulario es solo para referencia , se debe enviar con la fecha de 	creacion. 1 dia. Lead.
+		Enviar con copia a Javier.
+	
+	Damian Macera. 
+
+RoadTrack.
+
+		     	          	     
+	
+Ventas (JAVIER)
+
+     3 MESES EN RELACION EL FECHA DE COMPRA
+     Amout 0
+     Modelo 
+
+
+Enviar los datos de los modulos
+Especifar las formulas de Calculo de cada fuente.
+      			     	     			

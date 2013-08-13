@@ -1,0 +1,154 @@
+
+<table width="800" border="0" cellspacing="0">
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      
+      <tr>
+        <td scope="col">Grupo</td>
+        <td><input name="f1_grupo" value="{$f1_grupo}" type="text" id="f1_grupo" size="60" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="435" border="0" cellspacing="0">
+      <tr>
+        <td colspan="2"><strong>Tabla Evaluación</strong></td>
+      </tr>
+      <tr>
+        <td width="89"><strong>5</strong></td>
+        <td width="175"><strong>Completamente de Acuerdo</strong></td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td><strong>De Acuerdo</strong></td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td><strong>Neutral</strong></td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td><strong>En Desacuerdo</strong></td>
+      </tr>
+      <tr>
+        <td><strong>1</strong></td>
+        <td><strong>Completamente Desacuerdo</strong></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      <tr>
+        <td colspan="2">Favor Indique el grado en el cual está de acuerdo o desacuerdo con las siguientes preguntas acerca de la clase</td>
+        </tr>
+        <tr>
+        <td colspan="2"><b>Evaluación del curso</b></td>
+        </tr>
+      <tr>
+        <td width="714">&nbsp;</td>
+        <td width="70"><b>Calificación</b></td>
+        </tr>
+      <tr>
+        <td>Satisfacción general del curso</td>
+        <td><input name="f1_clase1" value="{$f1_clase1}" type="text" id="f1_clase1" size="5" /></td>
+        </tr>
+      <tr>
+        <td>Aplicación en el trabajo</td>
+        <td><input name="f1_clase2" value="{$f1_clase2}" type="text" id="f1_clase2" size="5" /></td>
+        </tr>
+      <tr>
+        <td>Desarrollo clase y materiales</td>
+        <td><input name="f1_clase3" value="{$f1_clase3}" type="text" id="f1_clase3" size="5" /></td>
+        </tr>
+      <tr>
+        <td>Objetivos de aprendizaje</td>
+        <td><input name="f1_clase4" value="{$f1_clase4}" type="text" id="f1_clase4" size="5" /></td>
+        </tr>
+         <tr>
+        <td>Total</td>
+        <td>
+             <input type="text" class="float" name="f1_total_clase" id="f1_total_clase" value="{$f1_total_clase}">
+                
+        </td>
+        </tr>
+ 
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      <tr>
+        <td width="736">&nbsp;</td>
+        <td width="48">Respuesta</td>
+      </tr>
+      <tr>
+        <td>De acuerdo a lo aprendido en esta clase tengo al menos una idea / plan de implementación en mi trabajo / profesión en los próximos 30 días</td>
+        <td>
+          <select name="f1_aprendizaje" id="f1_aprendizaje">
+            <option value="null" {$helper->selected($f1_aprendizaje,"")}> Escoja una Opcion</option>
+            <option value="si" {$helper->selected($f1_aprendizaje,"si")}> SI </option>
+            <option value="no" {$helper->selected($f1_aprendizaje,"no")}> NO </option>
+          </select>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      <tr>
+        <td>Comentarios Adicionales</td>
+      </tr>
+      <tr>
+        <td width="120"><label>
+          <textarea name="f1_datosAdicionales1" id="f1_datosAdicionales1" cols="120" rows="5">{$f1_datosAdicionales1}</textarea>
+        </label></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      <tr>
+        <td colspan="2">Por favor califique el grado en el que está de acuerdo o desacuerdo con el instructor</td>
+        </tr>
+      <tr>
+          <tr>
+           <td colspan="2"><b>Evaluación del Instructor</b></td>
+        </tr> 
+        <td width="714">&nbsp;</td>
+        <td width="70"><b>Calificación</b></td>
+      </tr>
+      <tr>
+        <td>Conocimiento del tema</td>
+        <td><input name="f1_instructor1" value="{$f1_instructor1}" type="text" id="f1_instructor1" size="5" /></td>
+      </tr>
+      <tr>
+        <td>Manejo apropiado de la clase</td>
+        <td><input name="f1_instructor2" value="{$f1_instructor2}" type="text" id="f1_instructor2" size="5" /></td>
+      </tr>
+      <tr>
+        <td>Actitud proactiva y positiva con participantes</td>
+        <td><input name="f1_instructor3" value="{$f1_instructor3}" type="text" id="f1_instructor3" size="5" /></td>
+      </tr>
+          <tr>
+        <td>Total</td>
+        <td>
+             <input type="text" class="float" name="f1_total_instructor" id="f1_total_instructor" value="{$f1_total_instructor}">
+                
+        </td>
+        </tr>
+  
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="800" border="0" cellspacing="0">
+      <tr>
+        <td>Comentarios Adicionales</td>
+      </tr>
+      <tr>
+        <td width="120"><label>
+          <textarea name="f1_datosAdicionales2" id="f1_datosAdicionales2" cols="120" rows="5">{$f1_datosAdicionales2}</textarea>
+        </label></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+

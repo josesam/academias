@@ -1,0 +1,308 @@
+{*
+/*********************************************************************************
+ * SugarCRM is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004 - 2009 SugarCRM Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo. If the display of the logo is not reasonably feasible for
+ * technical reasons, the Appropriate Legal Notices must display the words
+ * "Powered by SugarCRM".
+ ********************************************************************************/
+*}
+<link rel="stylesheet" type="text/css" href="include/SugarProgramas/sugarprogramas.css" />
+      <div id="programa" style="display:none;">
+<div class="seccion" >
+    <div class="seccion_head">
+            <!--Datos-->
+    </div>
+</div>
+<label>Paralelo</label>
+<input type="text" class="datos" size="60" name="paralelo_pop" id="paralelo_pop" value="">
+
+<br>
+<label>Módulo</label>
+<input type="text" class="datos" size="60" name="modulo_pop" id="modulo_pop" value="">
+<input type="hidden" name="idmodulo_pop" id="idmodulo_pop"  value="">
+<br>
+<label>Profesor</label>
+<input type="text" class="datos" name="profesor_pop" id="profesor_pop" size="60" value="">
+<input type="hidden" name="idprofesor_pop" id="idprofesor_pop" value="">
+<br>
+<label>Tipo</label>
+
+<select name="tipo_pop" id="tipo_pop">
+    <option value="s">s</option>
+    <option value="p">p</option>
+    <option value="o">o</option>
+</select>
+<br>
+<label>Horas</label>
+<input type="text" class="numeric" name="horas_pop" id="horas_pop" value="">
+<br>
+<label>Nivel</label>
+
+       <select name="nivel_pop" id="nivel_pop">
+           <option value="Preparatorio">Preparatorio</option>
+           <option value="Basico">Básico</option>
+           <option value="Intermedio">Intermedio</option>
+           <option value="Avanzado">Avanzado</option>
+           <option value="0">0</option>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10</option>
+           <option value="N/A">N/A</option>
+
+       </select>
+<br>
+<label>Fecha de Inicio</label>
+<input type="text" readonly="yes" class="datos" name="fechaincio_pop" id="fechaincio_pop" value="">
+<img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="fechaincio_trigger" align="absmiddle"> <span class="dateFormat">{$USER_DATEFORMAT}</span></slot>
+<br>
+<label>Fecha Final</label>
+<input type="text" readonly="yes"  class="datos" name="fechafinal_pop" id="fechafinal_pop" value="">
+<img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="fechafinal_trigger" align="absmiddle"> <span class="dateFormat">{$USER_DATEFORMAT}</span></slot>
+<br>
+<label>Ciudad</label>
+<input type="text"  name="lugar_pop" id="lugar_pop" size="60" value="">
+<br>
+<label>Instalaciones</label>
+<select id="instalaciones_pop" name="instalaciones_pop">
+    <option value="USFQ">USFQ</option>
+    <option value="Cliente">Cliente</option>
+    <option value="Otros">Otros</option>
+</select>
+<br>
+<input type="button" name="anadir" id="anadir" value="Añadir" onclick="javascript:generar_linea();">
+<input type="button" name="borrar" id="borrar" value="Borrar" onclick="javascript:borrar_linea();">
+
+</div>
+<br>
+<script type="text/javascript" src="include/SugarProgramas/SugarProgramas.js"></script>
+<script type="text/javascript">
+	var module = '{$module}';
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" >
+    <thead>
+        <tr>
+            <th width="10%"><a href="javascript:void(0);" onclick="javascript:abrir(); return false;">Ver</a></th>
+            <th width="18%"></th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            <th width="18%">&nbsp;</th>
+            
+        </tr>
+    </thead>
+	<tr>
+		<td class="dataField" valign="top" NOWRAP colspan="6">
+			<table cellpadding="0" cellspacing="0" border="0" id="{$module}AmbienteTable">
+
+
+                                <thead>
+                                <tr>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Módulo</th><!-- Proceso /tipo -->
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Profesor</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Tipo</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;"># horas</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Nivel</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Fecha Inicio</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Fecha Fin</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Lugar</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Instalaciones</th>
+                                     <th class="dataLabel" NOWRAP style="text-align:center;">Paralelo</th>
+                                     
+					<th class="dataLabel" NOWRAP>
+      					   Borrar
+					</th>
+                                        <th class="dataLabel" NOWRAP>
+      					   Editar
+					</th>
+                                        
+                                        <th class="dataLabel" NOWRAP style="text-align:center;">
+
+					</th>
+                                        <th class="dataLabel" NOWRAP>
+      					   
+					</th>
+
+				</tr>
+                                </thead>
+                                <tbody id="targetBodyAmbientes"></tbody>
+			</table>
+		</td>
+	</tr>
+        
+</table>
+
+
+<script type="text/javascript" language="javascript">
+ emailView = '{$emailView}';
+	prefillAmbientes = '{$prefillAmbientes}';
+        
+	//admin={$admin};
+        
+	{literal}
+	if(prefillAmbientes == 'true') {
+	 cargarMaterial({/literal}{literal}'{/literal}{$module}AmbienteTable{literal}'{/literal}, {$prefillData});{literal}
+	} else if(prefillAmbientes == 'false') {
+	{/literal}
+	 addCotizacion({literal}'{/literal}{$module}AmbienteTable{literal}'{/literal}, '');
+	}
+      
+</script>
+
+<script type="text/javascript">
+{literal}
+Calendar.setup ({
+	inputField : "fechaincio_pop",
+        daFormat : '{/literal}{$format_date}{literal}',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechaincio_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+Calendar.setup ({
+	inputField : "fechafinal_pop",
+        daFormat : '{/literal}{$format_date}{literal}',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechafinal_trigger",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+
+Calendar.setup ({
+	inputField : "fechaincio_pop1",
+        daFormat : '{/literal}{$format_date}{literal}',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechaincio_trigger1",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+Calendar.setup ({
+	inputField : "fechafinal_pop1",
+        daFormat : '{/literal}{$format_date}{literal}',
+        onClose: function(cal) { cal.hide(); },
+        showsTime : false,
+        button : "fechafinal_trigger1",
+        singleClick : true,
+        step : 1,
+        weekNumbers:false
+});
+{/literal}
+</script>
+
+
+
+<div id="programa1" style="display:none;">
+<div class="seccion" >
+    <div class="seccion_head">
+            <!--Datos-->
+    </div>
+</div>
+<label>Paralelo</label>
+<input type="text" class="datos" size="60" name="paralelo_pop1" id="paralelo_pop1" value="">
+
+<br>
+<label>Módulo</label>
+<input type="text" class="datos" size="60" name="modulo_pop1" id="modulo_pop1" value="">
+<input type="hidden" name="idmodulo_pop1" id="idmodulo_pop1"  value="">
+<br>
+<label>Profesor</label>
+<input type="text" class="datos" name="profesor_pop1" id="profesor_pop1" size="60" value="">
+<input type="hidden" name="idprofesor_pop1" id="idprofesor_pop1" value="">
+<br>
+<label>Tipo</label>
+
+<select name="tipo_pop1" id="tipo_pop1">
+    <option value="s">s</option>
+    <option value="p">p</option>
+    <option value="o">o</option>
+</select>
+<br>
+<label>Horas</label>
+<input type="text" class="numeric" name="horas_pop1" id="horas_pop1" value="">
+<br>
+<label>Nivel</label>
+
+       <select name="nivel_pop1" id="nivel_pop1">
+           <option value="Preparatorio">Preparatorio</option>
+           <option value="Basico">Básico</option>
+           <option value="Intermedio">Intermedio</option>
+           <option value="Avanzado">Avanzado</option>
+           <option value="0">0</option>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10</option>
+           <option value="N/A">N/A</option>
+
+       </select>
+<br>
+<label>Fecha de Inicio</label>
+<input type="text" readonly="yes" class="datos" name="fechaincio_pop1" id="fechaincio_pop1" value="">
+<img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="fechaincio_trigger1" align="absmiddle"> <span class="dateFormat">{$USER_DATEFORMAT}</span></slot>
+<br>
+<label>Fecha Final</label>
+<input type="text" readonly="yes"  class="datos" name="fechafinal_pop1" id="fechafinal_pop1" value="">
+<img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="fechafinal_trigger1" align="absmiddle"> <span class="dateFormat">{$USER_DATEFORMAT}</span></slot>
+<br>
+<label>Ciudad</label>
+<input type="text"  name="lugar_pop" id="lugar_pop1" size="60" value="">
+<br>
+<label>Instalaciones</label>
+<select id="instalaciones_pop1" name="instalaciones_pop1">
+    <option value="USFQ">USFQ</option>
+    <option value="Cliente">Cliente</option>
+    <option value="Otros">Otros</option>
+</select>
+<input type="hidden"  name="f_pop1" id="f_pop1" size="60" value="">
+<br>
+<input type="button" name="anadir" id="anadir" value="Añadir" onclick="javascript:editar_linea();">
+<input type="button" name="borrar" id="borrar" value="Borrar" onclick="javascript:borrar_editlinea();">
+
+</div>

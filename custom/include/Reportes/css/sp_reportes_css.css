@@ -1,0 +1,57 @@
+
+#titulo{
+    text-align: left;
+    font-family: Arial;
+    font-size:18px;
+    color: #fff;
+
+}
+#texto_filtros{
+    text-align: center;
+    font-family: Arial;
+    font-size:14px;
+    
+}
+
+.odd {
+background-color: #fff; /* pale yellow for odd rows */
+}
+.even {
+background-color: #cef; /* pale blue for even rows */
+}
+.sp_reporttitle{
+    font-size: 14px;
+ 
+
+}
+.table-heading{
+background-color: #2ac405;
+
+}
+.filters{
+    background-color: #ffffff;
+    
+}
+.reportTitle{
+    background-color: #4E8CCF;
+    color:#fff;
+    font-family: sans-serif;
+    font-size: 14px;
+
+}
+
+th.header{
+ background-color: #406E99;
+ color:#fff;
+ font-family: sans-serif;
+ font-size: 14px;
+
+}
+
+th.header_1{
+ background-color:#0000A0!important;
+ color:#fff;
+ font-family: sans-serif;
+ font-size: 14px;
+
+}
