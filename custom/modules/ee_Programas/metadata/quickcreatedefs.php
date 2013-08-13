@@ -2,28 +2,10 @@
 $module_name = 'ee_Programas';
 $viewdefs [$module_name] = 
 array (
-  'DetailView' => 
+  'QuickCreate' => 
   array (
     'templateMeta' => 
     array (
-      'form' => 
-      array (
-        'buttons' => 
-        array (
-          0 => 'EDIT',
-          1 => 'DUPLICATE',
-          2 => 'DELETE',
-          3 => 'FIND_DUPLICATES',
-          4 => 
-          array (
-            'customCode' => '{if $fields.estado.value=="Activo"}<input type="submit" name="Convertir" id="Convertir" value="Ejecutar Programa" onclick="this.form.return_module.value=\'ee_Programas\'; this.form.return_action.value=\'DetailView\'; this.form.return_id.value=\'{$fields.id.value}\'; this.form.action.value=\'convertir\';"/>{/if}',
-          ),
-          5 => 
-          array (
-            'customCode' => '{if $fields.estado.value=="EnEjecucion"}<input type="submit" name="cerrar" id="cerrar" value="Cerrar Programa" onclick="this.form.return_module.value=\'ee_Programas\'; this.form.return_action.value=\'DetailView\'; this.form.return_id.value=\'{$fields.id.value}\'; this.form.action.value=\'cerrar\';"/>{/if}',
-          ),
-        ),
-      ),
       'maxColumns' => '2',
       'widths' => 
       array (
@@ -39,7 +21,6 @@ array (
         ),
       ),
       'useTabs' => true,
-      'syncDetailEditViews' => true,
     ),
     'panels' => 
     array (
@@ -198,7 +179,14 @@ array (
       array (
         0 => 
         array (
-          0 => 'team_name',
+          0 => 
+          array (
+            'name' => 'team_name',
+            'displayParams' => 
+            array (
+              'display' => true,
+            ),
+          ),
           1 => 'assigned_user_name',
         ),
       ),

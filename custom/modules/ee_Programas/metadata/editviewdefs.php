@@ -100,6 +100,28 @@ array (
         array (
           0 => 
           array (
+            'name' => 'ciclo',
+            'label' => 'LBL_CICLO',
+          ),
+          1 => '',
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'academias',
+            'label' => 'LBL_ACADEMIAS',
+          ),
+          1 => 
+          array (
+            'name' => 'anio',
+            'label' => 'LBL_ANIO',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
             'name' => 'precio_c',
             'label' => 'LBL_PRECIO',
           ),
@@ -109,7 +131,7 @@ array (
             'label' => 'LBL_NROHORAS',
           ),
         ),
-        3 => 
+        5 => 
         array (
           0 => 
           array (
@@ -124,7 +146,7 @@ array (
             'customCode' => '<input type="text" name="coordinador"  size="35" id="coordinador" value="{$fields.coordinador.value}"/>',
           ),
         ),
-        4 => 
+        6 => 
         array (
           0 => 
           array (
@@ -137,7 +159,7 @@ array (
             'label' => 'LBL_GERENTEPROYECTO',
           ),
         ),
-        5 => 
+        7 => 
         array (
           0 => 
           array (
@@ -146,7 +168,7 @@ array (
           ),
           1 => '',
         ),
-        6 => 
+        8 => 
         array (
           0 => 
           array (
@@ -161,7 +183,7 @@ array (
             'label' => 'LBL_FECHAFINALPROGRAMA',
           ),
         ),
-        7 => 
+        9 => 
         array (
           0 => 
           array (
@@ -175,7 +197,7 @@ array (
             'label' => 'LBL_NUMEROMINIMO',
           ),
         ),
-        8 => 
+        10 => 
         array (
           0 => 'description',
         ),

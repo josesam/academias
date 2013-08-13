@@ -23,6 +23,27 @@ array (
     'width' => '10%',
     'default' => true,
   ),
+  'ACADEMIAS' => 
+  array (
+    'type' => 'enum',
+    'label' => 'LBL_ACADEMIAS',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'CICLO' => 
+  array (
+    'type' => 'varchar',
+    'label' => 'LBL_CICLO',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'ANIO' => 
+  array (
+    'type' => 'int',
+    'label' => 'LBL_ANIO',
+    'width' => '10%',
+    'default' => true,
+  ),
   'ESTADO' => 
   array (
     'type' => 'enum',
