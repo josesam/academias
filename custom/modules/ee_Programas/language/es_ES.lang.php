@@ -14,4 +14,8 @@ $mod_strings = array (
   'LBL_HOMEPAGE_TITLE' => 'Mi Programa',
   'LBL_EDITVIEW_PANEL3' => 'Usuarios',
   'LBL_DESCRIPTION' => 'Observaciones',
+'LBL_CICLO'=> 'Ciclo',
+'LBL_ACADEMIAS' => 'Academia',
+'LBL_ANIO' => 'Año',
+ 
 );
