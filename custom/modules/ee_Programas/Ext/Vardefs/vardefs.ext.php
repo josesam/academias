@@ -179,7 +179,7 @@ $dictionary["ee_Programas"]["fields"]["ciclo"]=array(
 
 
 $dictionary["ee_Programas"]["fields"]["academias"]=array(
-    'required' => false,
+    'required' => true,
     'name' => 'academias',
     'vname' => 'LBL_ACADEMIAS',
     'type' => 'enum',
