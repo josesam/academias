@@ -66,7 +66,7 @@ jQuery(document).ready(function() {
             o[k].formapago,
             o[k].tarjeta,
             o[k].tipo,
-            o[k].observaciones,
+            o[k].factura,
             o[k].observaciones
 
             );
@@ -84,8 +84,8 @@ jQuery(document).ready(function() {
                              formapago,
                              tarjeta,
                              tipo,
-                             observaciones,
-                             factura
+                             factura,
+                             observaciones
                              ){
 
              var el = document.getElementById("prod_row_"+fila);
@@ -99,15 +99,15 @@ jQuery(document).ready(function() {
                     return;
              if (valor=='')
                     return;
-             if(factura=='')
+             if(factura==='')
                  return ;
              if(isNaN(parseFloat(valor)))
                  return ;
-            if(valor==0){
+            if(valor===0){
                 alert(" No puede ingresar una cuota con valor 0");
-                return
+                return;
             }
-            if(sumar(valor)==false){
+            if(sumar(valor)===false){
                 alert(" Ya esta cancelada la cuota");
                 return ;
             }
@@ -120,15 +120,15 @@ jQuery(document).ready(function() {
 		valortxt = "<input type='text' readonly='true' name='valortxt_"+fila+"' id='valortxt_"+fila+"' value='"+verifica(valor)+"' size='10'  />";
 
                 formapagotxt = "<input type='text' name='formatxt_"+fila+"' id='formatxt_"+fila+"' value='"+verifica(formapago)+"' size='15'  />";
-                tarjetatxt = "<input type='text' readonly='true' name='tarjetatxt_"+fila+"' id='tarjetatxt_"+fila+"' value='"+verifica(tarjeta)+"' size='15'  />";
-                tipotxt = "<input type='text' readonly='true' name='tipotxt_"+fila+"' id='tipotxt_"+fila+"' value='"+verifica(tipo)+"' size='20'  />";
+                tarjetatxt = "<input type='hidden' readonly='true' name='tarjetatxt_"+fila+"' id='tarjetatxt_"+fila+"' value='"+verifica(tarjeta)+"' size='15'  />";
+                tipotxt = "<input type='hidden' readonly='true' name='tipotxt_"+fila+"' id='tipotxt_"+fila+"' value='"+verifica(tipo)+"' size='20'  />";
                 observacionestxt = "<input type='text'  name='observacionestxt_"+fila+"' id='observacionestxt_"+fila+"' value='"+verifica(observaciones)+"' size='20'  />";
                 facturatxt = "<input type='text' readonly='true' name='facturatxt_"+fila+"' id='facturatxt_"+fila+"' value='"+verifica(factura)+"' size='20'  />";           
                 remove_control = "<a href='javascript:void(0);' onclick='borrar(\""+fila+"\");'>X</a>";
 //         
              celdas=[
-                 personatxt,fechatxt,valortxt,formapagotxt,tarjetatxt,tipotxt,observacionestxt,
-                 remove_control,idtxt,id_control
+                 personatxt,fechatxt,valortxt,formapagotxt,facturatxt,observacionestxt,
+                 remove_control,idtxt,id_control,tarjetatxt,tipotxt
              ];
             row = this.hacerFila('prod_row_'+fila, celdas);
 	    jQuery('#'+tableId).append(row);
@@ -143,22 +143,22 @@ jQuery(document).ready(function() {
        jQuery("#prod_row_"+fila).remove();
        
       
-   }
+   };
    verifica=function (val){
-        if(typeof(val)=='undefined')
-        return ''
-         if(val==null)
-        return ''
+        if(typeof(val)==='undefined')
+        return '';
+         if(val===null)
+        return '';
 
         return val;
-    }
+    };
 
 sumar=function (val){
 
     var valor=new Number(0.00);
     for (i=0;i<fila;i++){
          if(!isNaN(parseFloat(jQuery("#valortxt_"+i).val())))
-                valor+=parseFloat(jQuery("#valortxt_"+i).val())
+                valor+=parseFloat(jQuery("#valortxt_"+i).val());
      }
      valor+=parseFloat(val);
      
@@ -166,31 +166,31 @@ sumar=function (val){
      return false;
    else
        return true;
-}
+};
 
 restar=function (){
 
     var valor=new Number(0.00);
     for (i=0;i<fila;i++){
          if(!isNaN(parseFloat(jQuery("#valortxt_"+i).val())))
-                valor+=parseFloat(jQuery("#valortxt_"+i).val())
+                valor+=parseFloat(jQuery("#valortxt_"+i).val());
      }
      
    return parseFloat(jQuery("#montopago").val().replace(/\,/g,"")) - valor;
    
-}
+};
 
 abrir=function(){
                 jQuery("#programa").dialog({
                             closeOnEscape: true,
-                            height: 300 ,
+                            height: 400 ,
                             hide: 'slide',
                             modal: true ,
-                            title: 'Datos',
+                            title: 'Detalle Pagos',
                             width: 500
                 });
-    jQuery("#valor_pop").val(restar())
-}
+    jQuery("#valor_pop").val(restar());
+};
 generar_linea=function(){
             addMaterial('ee_CobranzasAmbienteTable','',
              jQuery("#persona_pop").val(),
@@ -199,22 +199,11 @@ generar_linea=function(){
              jQuery("#formapago_pop").val(),
              jQuery("#tarjeta").val(),
              jQuery("#tipopago").val(),
+             jQuery("#factura_pop").val(),
              jQuery("#observaciones").val()
 
 
             );
     
-}
+};
 
-//copiar_fecha=function(){
-//    for (i=0;i<fila;i++){
-//         if(!isNaN(parseFloat(jQuery("#fechainiciotxt_"+i).val()))){
-//                valor+=parseFloat(jQuery("#horastxt_"+i).val())
-//         }
-//     }
-//   if(parseFloat(valor)>0)
-//        jQuery("#nrohoras_c").val(valor.toFixed(2));
-//   else
-//        jQuery("#nrohoras_c").val("0.00");
-//
-//}

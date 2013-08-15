@@ -41,19 +41,21 @@
             <!--Datos-->
     </div>
 </div>
-<label>Persona Pago;&nbsp<span style="color:red;">*</span></label>
+<label>Persona Pago&nbsp<span style="color:red;">*</span></label>
 <input type="text" class="datos" name="persona_pop" id="persona_pop" value="">
 <br>
 <br>
-<label>Fecha de Pago;&nbsp<span style="color:red;">*</span></label>
+<label>Fecha de Pago&nbsp<span style="color:red;">*</span></label>
 <input type="text" class="datos" name="fechaincio_pop" id="fechaincio_pop" value="">
 <img src="{sugar_getimagepath file='jscalendar.gif'}" alt="{$APP.LBL_ENTER_DATE}"  id="fechaincio_trigger" align="absmiddle"> <span class="dateFormat">{$USER_DATEFORMAT}</span></slot>
 <br>
-<label>Valor de Pago;&nbsp<span style="color:red;">*</span></label>
+<br>
+<label>Valor de Pago&nbsp<span style="color:red;">*</span></label>
 <input type="text" class="numeric"  name="valor_pop" id="valor_pop" value="">
 
 <br>
-<label>Forma de Pago;&nbsp<span style="color:red;">*</span></label>
+<br>
+<label>Forma de Pago&nbsp<span style="color:red;">*</span></label>
 <select name="formapago_pop" id="formapago_pop">
     <option value="">Escoja una opcion</option>
     <option value="Efectivo">Efectivo</option>
@@ -63,8 +65,9 @@
     
 </select>
 <br>
-<label>Número Factura;&nbsp<span style="color:red;">*</span></label>
-<input type="text" class="numeric"  name="factura_pop" id="factura_pop" value="">
+<br>
+<label>Número Factura&nbsp<span style="color:red;">*</span></label>
+<input type="text"  name="factura_pop" id="factura_pop" value="">
 
 <div style="display: none;">
 <label id="l_tarjeta">Tarjeta</label>
@@ -93,6 +96,7 @@
     
 </select>
 </div>
+<br>
 <br>
 <label>Observaciones</label>
 <textarea  name="observaciones" id="observaciones" rows="5" cols="60"></textarea>
@@ -128,10 +132,10 @@
                                      <th class="dataLabel" NOWRAP style="text-align:center;">Fecha de Pago</th>
                                      <th class="dataLabel" NOWRAP style="text-align:center;">Valor de pago</th>
                                               <th class="dataLabel" NOWRAP style="text-align:center;">Forma de Pago</th>
-                                              <th class="dataLabel" NOWRAP style="text-align:center;">Tarjeta</th>
-                                              <th class="dataLabel" NOWRAP style="text-align:center;">Tipo de Pago</th>
+                                             <th class="dataLabel" NOWRAP style="text-align:center;">Factura</th>
+    <!--                                           <th class="dataLabel" NOWRAP style="text-align:center;">Tipo de Pago</th>--> 
                                               <th class="dataLabel" NOWRAP style="text-align:center;">Observaciones</th>
-                                     
+                                    
                                      
 					<th class="dataLabel" NOWRAP>
       					   Borrar
