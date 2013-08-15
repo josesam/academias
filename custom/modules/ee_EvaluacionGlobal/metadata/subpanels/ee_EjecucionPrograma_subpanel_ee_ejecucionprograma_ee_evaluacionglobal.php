@@ -1,11 +1,11 @@
 <?php
-// created: 2012-07-03 04:54:59
+// created: 2013-08-15 10:39:13
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
     'vname' => 'LBL_NAME',
     'widget_class' => 'SubPanelDetailViewLink',
-    'width' => '45%',
+    'width' => '25%',
     'default' => true,
   ),
   'modulo' => 
@@ -28,7 +28,7 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_GRUPO',
     'width' => '10%',
     'default' => true,
-  ),  
+  ),
   'date_modified' => 
   array (
     'vname' => 'LBL_DATE_MODIFIED',

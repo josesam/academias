@@ -88,15 +88,14 @@ class ee_EjecucionProgramaViewDetail extends ViewDetail {
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_encuestainstructor']['top_buttons'][1]);
 
           $subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_encuestaitc']['top_buttons'][0]['widget_class']='SubPanelTopCreateButton';
-          $subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_evaluacionsci']['top_buttons'][0]['widget_class']='SubPanelTopCreateButton';
-          unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_encuestaitc']['top_buttons'][1]);
+                    unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_encuestaitc']['top_buttons'][1]);
 
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_notes']['top_buttons'][1]);
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_evaluacionglobal']['top_buttons'][1]);
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_opportunities']['top_buttons'][0]);
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_opportunities']['top_buttons'][1]);
           unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_evaluacionglobal']['top_buttons'][1]);
-          unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_evaluacionsci']['top_buttons'][1]);
+          unset($subpanel->subpanel_definitions->layout_defs['subpanel_setup']['ee_ejecucionprograma_ee_evaluacionsci']);
 
 
 
