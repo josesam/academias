@@ -5,7 +5,7 @@
 
 jQuery(document).ready(function() {
        jQuery("#ciudad").keypress(function(event) {
-                if ( event.which == 13) { encontrar(); }
+                if ( event.which === 13) { encontrar(); }
 
         });
         var decimal=2;
@@ -30,9 +30,9 @@ jQuery("#ciudad_dlg").dialog({
                             width: 500
                             });
 
-}
+};
 paste=function(ciudad,provincia,pais,pos){
-    if(pos=="principal"){
+    if(pos==="principal"){
         jQuery("#pais_principal").val(pais);
         jQuery("#provincia_principal").val(provincia);
         jQuery("#ciudad_principal").val(ciudad);
@@ -43,13 +43,13 @@ paste=function(ciudad,provincia,pais,pos){
         jQuery("#ciudad_envio").val(ciudad);
     }
     jQuery("#ciudad_dlg").dialog("close");
-}
+};
 encontrar=function(){
        var data={
             parametro:jQuery("#ciudad").val(),
             pos:jQuery("#posicion").val()
             
-        }
+        };
         
         var urllista = "index.php?module=ee_Profesores&action=direccion";
 
@@ -63,7 +63,7 @@ encontrar=function(){
                         return false;
                 });
     
-}
+};
 
 openVerificacion=function(){
    var flag=true;
@@ -73,8 +73,9 @@ openVerificacion=function(){
             ruc:jQuery("#documentoidentidad_c").val(),
             equipo:jQuery("#id_EditView_team_name_collection_0").val(),
             record_actual:jQuery("input[name=record]").val(),
+            codigobanner:jQuery("#codigobanner").val(),
             modulo:'ee_Profesores'
-        }
+        };
            jQuery("#verifica_dlg").dialog({
                             closeOnEscape: true,
                             height: 300 ,
@@ -85,9 +86,9 @@ openVerificacion=function(){
                             });
 
 
-if(flag==false){
+if(flag===false){
  jQuery.each(errores, function(i, val) {
-          if(typeof(val)!="undefined")
+          if(typeof(val)!=="undefined")
             jQuery("#verficainfo").append(val + "<br/>");
             jQuery("#verficainfo").attr("style","color:red");
         });
@@ -99,7 +100,7 @@ if(flag==false){
 
                 jQuery("#verficainfo").text("verificando informacion...");
                 jQuery("#verficainfo").load(urllista,data, function(response, status, xhr){
-                    if(status=="success"){
+                    if(status==="success"){
                         jQuery("#verficainfo").html(response);
                     }else
                         return false;
@@ -107,23 +108,22 @@ if(flag==false){
   }
  return false;
 
-}
+};
 Limpiar=function(){
     errores=new Array(20);
-}
+};
 check_custom_data=function(){
    // alert("ca");
     openVerificacion();
 
     return false;
-}
+};
 
 guardar=function(){
 
 if(check_form('EditView')){
   SUGAR.ajaxUI.submitForm(document.forms['EditView']);return false;
- }else
-   alert('Existio un problema ... Comuniquese con el administrador');
+ }
 
 
 return false;

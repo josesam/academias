@@ -54,7 +54,10 @@ class Profesor {
         $this->cargaEstado();
         $this->validarCedula($form);
         
+        if(self::verificaCodigoBanner($form['codigobanner'],$form['record_actual']))
+            $this->res->errores['codigobanner']="Código Banner existente";
         $this->cargaEstado();
+        
         
         
         if($this->res->estado=='error') return $this->res;
@@ -68,7 +71,44 @@ class Profesor {
         }else
               $this->res->estado='exito';
     }
-    
+    /*
+     * Valida la unicidad del codigo banner,
+     * @param <string> Codigo ingresado en el formulario
+     * @param <string> Para edicion del mismo registro 
+     * @return <bool>
+     */
+    public function verificaCodigoBanner($codigo="",$record=""){
+        
+        
+        if(empty($record)){
+            $this->sql="Select a.id from ee_profesores a  where  a.codigobanner='".trim($codigo)."' and a.deleted=0";
+            $result=$this->db->query($this->sql);
+
+
+            while($a = $this->db->fetchByAssoc($result)) {
+                    $data_principal[] = $a;
+            }
+            if(!empty($data_principal))
+                return true;// Existe
+
+            return false;
+        }else{
+            $this->sql="Select a.id id from ee_profesores a  where  a.codigobanner='".trim($codigo)."' and deleted=0";
+            $result=$this->db->query($this->sql);
+            while($a = $this->db->fetchByAssoc($result)) {
+                    $data_principal = $a['id'];
+                    if(trim($data_principal)!=trim($record)){
+                        return true;
+                    }
+            }
+        
+          
+            return false;
+
+
+
+        }
+    }
     public function validarCampos($form){
          
        
@@ -78,7 +118,9 @@ class Profesor {
          if(empty($form['name']))
             $this->res->errores['name']='El apellido  no puede estar vacio';
           if(empty($form['equipo']))
-            $this->res->errores['equipo']='El eqquipo de trabajo no puede estar vacio';
+            $this->res->errores['equipo']='El equipo de trabajo no puede estar vacio';
+            if(empty($form['codigobanner']))
+            $this->res->errores['codigobanner']='El codigo banner no puede estar vacio';
          
     }
 

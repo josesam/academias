@@ -97,6 +97,10 @@ array (
           array (
             'name' => 'documentoidentidad_c',
             'label' => 'LBL_DOCUMENTOIDENTIDAD',
+            'displayParams' => 
+            array (
+              'required' => true,
+            ),  
           ),
         ),
         2 => 
@@ -166,6 +170,10 @@ array (
           array (
             'name' => 'codigobanner',
             'label' => 'LBL_CODIGOBANNER',
+            'displayParams' => 
+            array (
+              'required' => true,
+            ),  
           ),
         ),
       ),

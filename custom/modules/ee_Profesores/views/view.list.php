@@ -6,6 +6,8 @@ class ee_ProfesoresViewList extends ViewList
  	{
  		parent::preDisplay();
  		$this->lv->targetList = true;
+                $this->lv->quickViewLinks = false;
  	}
+        
 }
 ?>
