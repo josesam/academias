@@ -573,6 +573,12 @@ $dictionary["ee_Profesores"]["fields"]["codigobanner"]=array(
 
  
 
+ // created: 2013-08-19 15:46:20
+$dictionary['ee_Profesores']['fields']['email1']['required']=true;
+$dictionary['ee_Profesores']['fields']['email1']['calculated']=false;
+
+ 
+
  // created: 2012-03-20 12:39:27
 
  

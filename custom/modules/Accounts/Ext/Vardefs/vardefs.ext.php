@@ -686,6 +686,12 @@ $dictionary['Account']['fields']['comportamientopago_c']['dependency']='';
 
  
 
+ // created: 2013-08-19 19:16:27
+$dictionary['Account']['fields']['email1']['required']=true;
+$dictionary['Account']['fields']['email1']['calculated']=false;
+
+ 
+
  // created: 2012-03-22 05:19:55
 
  

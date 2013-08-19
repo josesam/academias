@@ -676,6 +676,12 @@ $dictionary['Contact']['fields']['area_c']['dependency']='';
 
  
 
+ // created: 2013-08-19 16:21:21
+$dictionary['Contact']['fields']['email1']['required']=true;
+$dictionary['Contact']['fields']['email1']['calculated']=false;
+
+ 
+
  // created: 2012-09-24 05:03:53
 $dictionary['Contact']['fields']['estadocivil_c']['dependency']='';
 

@@ -74,6 +74,7 @@ openVerificacion=function(){
             equipo:jQuery("#id_EditView_team_name_collection_0").val(),
             record_actual:jQuery("input[name=record]").val(),
             codigobanner:jQuery("#codigobanner").val(),
+            email:jQuery("#ee_Profesores0emailAddress0").val(),
             modulo:'ee_Profesores'
         };
            jQuery("#verifica_dlg").dialog({

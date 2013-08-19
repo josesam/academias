@@ -326,13 +326,13 @@ $dictionary['Opportunity']['fields']['fechavalidez_c']['dependency']='';
 
  
 
- // created: 2012-10-19 06:35:09
-$dictionary['Opportunity']['fields']['motivoperdida_c']['dependency']='';
+ // created: 2012-07-11 00:19:13
+$dictionary['Opportunity']['fields']['motivo_c']['dependency']='';
 
  
 
- // created: 2012-07-11 00:19:13
-$dictionary['Opportunity']['fields']['motivo_c']['dependency']='';
+ // created: 2012-10-19 06:35:09
+$dictionary['Opportunity']['fields']['motivoperdida_c']['dependency']='';
 
  
 
