@@ -19,6 +19,7 @@ function clientesusfq($user_auth, $application, $email, $name_value_list, $modul
     // perform your logic here and return a string
     // Comienzo de la logica de login
         global $sugar_config, $system_config;
+        global $current_user;
         if ($module_name!='Contacts'){
             
             return "Error , modulo no permitido";
@@ -191,6 +192,7 @@ function clientesusfq($user_auth, $application, $email, $name_value_list, $modul
                             $cuenta->cursosinteres.=";".$c;
                             
                         }
+                        $cuenta->assigned_user_id=$current_user->id;
                         $cuenta->save();
                         return "Contacto actualizado";
                     
