@@ -4,7 +4,7 @@ $server->register(
         array(
          'user_auth'=>'tns:user_auth',
          'application_name'=>'xsd:string',
-         'documento'=>'xsd:string',
+         'email'=>'xsd:string',
          'name_value_list'=>'tns:name_value_list',
          'module_name'=>'xsd:string',
     
@@ -15,16 +15,21 @@ $server->register(
     $NAMESPACE
 );
 
-function clientesusfq($user_auth, $application, $documento, $name_value_list, $module_name) {
+function clientesusfq($user_auth, $application, $email, $name_value_list, $module_name) {
     // perform your logic here and return a string
     // Comienzo de la logica de login
-    global $sugar_config, $system_config;
-    
+        global $sugar_config, $system_config;
+        if ($module_name!='Contacts'){
+            
+            return "Error , modulo no permitido";
+        }
+        if (empty($email))    
+                    return "El email es un campo requerido";
 	$error = new SoapError();
 	$user = new User();
 	$success = false;
 	//rrs
-		$system_config = new Administration();
+        $system_config = new Administration();
 	$system_config->retrieveSettings('system');
 	$authController = new AuthenticationController((!empty($sugar_config['authenticationClass'])? $sugar_config['authenticationClass'] : 'SugarAuthenticate'));
 	//rrs
@@ -115,92 +120,34 @@ function clientesusfq($user_auth, $application, $documento, $name_value_list, $m
                             $sugar_config['list_max_entries_per_page'] = $max_results;
                     }
 
-
-                    $class_name = $beanList[$module_name];
-                    require_once($beanFiles[$class_name]);
-                    $seed = new $class_name();
-                    if(! ($seed->ACLAccess('Export') && $seed->ACLAccess('list')))
-                    {
-                                $error->set_error('no_access');
-                                //return array('result_count'=>-1, 'entry_list'=>array(), 'error'=>$error->get_soap_array());
-                                return "No tiene acceso al módulo ".$module_name;
-                    }
-                $query="accounts_cstm.nrodocumento_c='".trim($documento)."'";
+              // validacionb del email, para su unicidad
                 
-                require_once 'include/SugarSQLValidate.php';
-                $valid = new SugarSQLValidate();
-                if(!$valid->validateQueryClauses($query, $order_by)) {
-                    $GLOBALS['log']->error("Bad query: $query $order_by");
-                        $error->set_error('no_access');
-                        return "Error en el query";
-//                        return array(
-//                                    'result_count' => -1,
-//                                    'error' => $error->get_soap_array()
-//                    );
-                    }
-                    if($query == ''){
-                            $where = '';
-                    }
-                    if($offset == '' || $offset == -1){
-                            $offset = 0;
-                    }
-                    if($using_cp){
-                        $response = $seed->retrieveTargetList($query, $select_fields, $offset,-1,-1,$deleted);
-                    }else{
-                        $response = $seed->get_list($order_by, $query, $offset,-1,-1,$deleted,true);
-                    }
-                    $list = $response['list'];
-                
-
-                $output_list = array();
-
-                $isEmailModule = false;
-                if($module_name == 'Emails'){
-                    $isEmailModule = true;
-                }
-                // retrieve the vardef information on the bean's fields.
-                $field_list = array();
-                foreach($list as $value)
-                {
-                        if(isset($value->emailAddress)){
-                                $value->emailAddress->handleLegacyRetrieve($value);
-                        }
-                if($isEmailModule){
-                    $value->retrieveEmailText();
-                }
-		$value->fill_in_additional_detail_fields();
-		$output_list[] = get_return_value($value, $module_name);
-		if(empty($field_list)){
-			$field_list = get_field_list($value);
-		}
-         }
-
-	// Filter the search results to only include the requested fields.
-	 $output_list = filter_return_list($output_list, $select_fields, $module_name);
-
-	// Filter the list of fields to only include information on the requested fields.
-	 $field_list = filter_return_list($field_list,$select_fields, $module_name);
-
-	// Calculate the offset for the start of the next page
-	  $next_offset = $offset + sizeof($output_list);
-          //return array('result_count'=>sizeof($output_list), 'next_offset'=>$next_offset,'field_list'=>$field_list, 'entry_list'=>$output_list, 'error'=>$error->get_soap_array());
-
+                global $db;    
+                $filtros.= " and em.email_address like '%".$email."%'";
+                $sql="SELECT a.id  cliente_id,
+                    em.email_address email
+                    FROM contacts a
+                    LEFT JOIN email_addr_bean_rel h ON a.id = h.bean_id
+                    AND h.bean_module = 'Contacts'
+                    AND h.deleted =0
+                    LEFT JOIN email_addresses em on em.id=h.email_address_id
+                    where a.deleted=0 ".$filtros;
+            $result=$db->query($sql);
+        
+                $output_list=array();    
+                while($a = $db->fetchByAssoc($result)) {
+                    $output_list[] = $a;
+                    break;
+            }
                 if(count($output_list)>0){
                     //fin de la busqueda de cédula
+                       $cliente_id="";
                        foreach($output_list as $key =>$value){
-                           if(is_array($value)){
-                                foreach($value as $key1 =>$value1){
-                                    
-                                    if ($key1=="id"){
-                                        $cliente_id= $value1 ;
-                                        break;
-                                    }
-                                }
-                           }
+                           $cliente_id=$value['cliente_id'];
                        }
                        //return $cadena;
                        if(empty($cliente_id)){
-                           return "Error no se encontro al cliente";
+                           return "Error no se encontro al contacto";
                        }
                     	global  $beanList, $beanFiles;
                         $error = new SoapError();
@@ -221,7 +168,7 @@ function clientesusfq($user_auth, $application, $documento, $name_value_list, $m
                                 
                                 return "No tiene permisos de inserción";
                         }
-                        $cuenta=new Account();
+                        $cuenta=new Contact();
                         $cuenta->retrieve($cliente_id);
                         if(empty($cuenta->id)){
                             return 'No se encuentra un cliente con ese codigo';
@@ -245,13 +192,12 @@ function clientesusfq($user_auth, $application, $documento, $name_value_list, $m
                             
                         }
                         $cuenta->save();
-                        return "Cliente actualizado";
+                        return "Contacto actualizado";
                     
                 }else{
                     
                 // inserción de la informacion
-                        if(!isset($name_value_list['nrodocumento_c']))
-                            $name_value_list['nrodocumento_c']=$documento;
+                        
                     	global  $beanList, $beanFiles;
                         $error = new SoapError();
                         if(!validate_authenticated($session)){
@@ -308,18 +254,12 @@ function clientesusfq($user_auth, $application, $documento, $name_value_list, $m
                         if($seed->deleted == 1){
                                         $seed->mark_deleted($seed->id);
                         }
-                        return "Se inserto el prospecto";
+                        return "Se inserto el contacto";
                         //return array('id'=>$seed->id, 'error'=>$error->get_soap_array());
 
                 // fin de la insercion
                 }
-   	  
-
-
-          
-
-
-	}
+   	}
 	$error->set_error('invalid_login');
 	$GLOBALS['log']->fatal('SECURITY: User authentication for '. $user_auth['user_name']. ' failed');
 	LogicHook::initialize();
