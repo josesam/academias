@@ -110,17 +110,16 @@ class Profesor {
         }
     }
     public function validarCampos($form){
-         
-       
-
         if(empty($form['ruc']))
             $this->res->errores['ruc']='La número de documento no puede estar vacio';
-         if(empty($form['name']))
+        if(empty($form['name']))
             $this->res->errores['name']='El apellido  no puede estar vacio';
-          if(empty($form['equipo']))
+        if(empty($form['equipo']))
             $this->res->errores['equipo']='El equipo de trabajo no puede estar vacio';
-            if(empty($form['codigobanner']))
+        if(empty($form['codigobanner']))
             $this->res->errores['codigobanner']='El codigo banner no puede estar vacio';
+        if(empty($form['email']))
+            $this->res->errores['email']='La dirección de email  no puede estar vacio';
          
     }
 

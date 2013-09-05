@@ -1,5 +1,5 @@
 <?php
-// created: 2013-08-12 19:09:19
+// created: 2013-08-19 16:18:44
 $mod_strings = array (
   'LBL_ACCOUNT_NAME' => 'Cliente:',
   'LBL_ACCOUNT_ID' => 'ID de cuenta',
@@ -40,4 +40,5 @@ $mod_strings = array (
   'LBL_CODIGOBANNER' => 'Código Banner',
   'LBL_TIPOCONTACTO' => 'Tipo de Contacto',
   'LBL_CONTACTS_AC_CERTIFICADO_FROM_AC_CERTIFICADO_TITLE' => 'Certificados',
+  'LBL_EMAIL_ADDRESS' => 'Correo electrónico:',
 );

@@ -116,6 +116,9 @@ class Contacto {
         
         $this->buscaCoincidencias($form,$form['record']);
         $this->validaemail($form,$form['record']);
+        
+        $this->validaCodigoBanner($form,$form['record']);
+        
         self::cargaEstado();
         return $this->res;
     }
@@ -325,6 +328,38 @@ class Contacto {
             return false;
 
         }
+
+        }
+
+    }
+    
+    function validaCodigoBanner($form,$record=""){
+        global $db;
+        
+        $filtros='';
+
+        	
+        if($form['codigobanner']!='')
+            $filtros.= " and c.codigobanner = '". $form['codigobanner'] ."'";
+        if(!empty($record))
+            $filtros.=" and c.id !='$record'";
+        if($form['codigobanner']!=''){
+            $sql="SELECT c.codigobanner codigobanner
+                  FROM contacts c
+                  WHERE c.deleted=0 ".$filtros;
+            $result=$db->query($sql);
+
+           // echo $sql;
+            while($a = $db->fetchByAssoc($result)) {
+                    $data_principal[] = $a;
+            }
+            if(!empty($data_principal)){
+                $this->res->errores['codigobanner']="Código Banner que esta ingresado ya se encuentra registrado";
+                return true;// Existe
+            }
+
+            return false;
+        
 
         }
 
