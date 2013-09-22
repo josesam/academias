@@ -55,11 +55,11 @@ class ee_ProgramasViewEdit extends ViewEdit {
 
 $this->ev->showVCRControl = false ;
 		echo '<link rel="stylesheet" type="text/css" href="custom/include/scripts/genericas/jquery/css/jquery-ui_auto.css" />';
-                
-// 		echo '<div class="ui-widget" style="margin-top:2em; font-family:Arial">
-//                        Result:
-//                        <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-//                    </div>';
+                $path="custom/include/clases/varios/SugarCRMHelpers.php";
+                if (file_exists($path)){
+                    include_once $path;
+                    SugarCRMHelpers::exclude("programa_status_dom", array('EnEjecucion','Cerrado'));
+                }
                 parent::display();
  	}
 }
